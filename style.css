@@ -243,5 +243,43 @@ footer p { margin: 0 0 15px; }
   .form-card { padding: 15px; }
   .cars, .advantages, .reviews { padding: 20px 10px; }
 }
+/* Genel box-sizing */
+* {
+  box-sizing: border-box;
+}
+
+/* Navbar mobil düzeltme */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 15px;
+    flex-wrap: wrap;
+  }
+  .navbar ul {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+  }
+  .navbar .logo {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .hero {
+    padding: 30px 15px;
+    flex-direction: column;
+  }
+  .form-card {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+
 
 
