@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STEEL Rent A Car</title>
+<style>
+/* Genel */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #0e0e0e;
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111;
+  padding: 15px 50px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.navbar .logo {
+  font-weight: bold;
+  font-size: 22px;
+}
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+.navbar ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.navbar ul li a:hover { color: #ffcc00; }
+.btn {
+  background: linear-gradient(to right, #ffcc00, #d4a017);
+  padding: 10px 20px;
+  border-radius: 6px;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+  display: inline-block;
+}
+.btn:hover { opacity: 0.85; }
+.btn-outline {
+  border: 2px solid #ffcc00;
+  padding: 10px 20px;
+  border-radius: 6px;
+  color: #ffcc00;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.btn-outline:hover { background: #ffcc00; color: #000; }
+.btn.full { width: 100%; text-align: center; margin-top: 15px; }
+.btn.prof {
+  background: linear-gradient(45deg, #25d366, #128c7e);
+  color: #fff;
+}
+.btn.prof:hover { opacity: 0.9; }
+
+/* Hero */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.hero-text { flex: 1; }
+.hero-text h1 { font-size: 34px; margin-bottom: 20px; }
+.form-card {
+  background: #1a1a1a;
+  padding: 25px;
+  border-radius: 12px;
+  width: 380px;
+}
+.form-card form { display: flex; flex-direction: column; gap: 10px; }
+.form-card label { font-size: 14px; margin-bottom: 5px; }
+.form-card input, .form-card select {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  background: #222;
+  color: #fff;
+  width: 100%;
+}
+.form-row { display: flex; gap: 15px; }
+.form-row div { flex: 1; }
+
+/* Avantajlar */
+.advantages { padding: 50px; text-align: center; }
+.advantages h2 { margin-bottom: 30px; }
+.advantages .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.advantages .card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+.advantages .card:hover { background: #222; }
+
+/* Araçlar */
+.cars { padding: 50px; }
+.cars h2 { margin-bottom: 30px; text-align: center; }
+.cars .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+.car-card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 15px;
+  transition: 0.3s;
+  text-align: left;
+}
+.car-card:hover { transform: translateY(-5px); background: #222; }
+.car-card img { width: 100%; border-radius: 12px; }
+.car-card h3 { margin: 10px 0 5px; font-size: 18px; }
+.car-card p { margin: 5px 0 10px; font-size: 14px; color: #ccc; }
+.car-card .car-badge {
+  display: inline-block;
+  background: #ffcc00;
+  color: #000;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.car-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.car-actions .soon {
+  color: #ffcc00;
+  font-weight: bold;
+  font-size: 14px;
+}
+/* Fiyatları tamamen gizle */
+.car-card .price { display: none; }
+
+/* Yorumlar */
+.reviews { padding: 50px; text-align: center; }
+.reviews h2 { margin-bottom: 30px; }
+.reviews .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.review-card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  font-style: italic;
+  transition: 0.3s;
+}
+.review-card:hover { background: #222; }
+.review-card span {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  font-style: normal;
+  color: #ffcc00;
+}
+
+/* Footer */
+footer { text-align: center; padding: 30px; background: #111; margin-top: 40px; }
+footer p { margin: 0 0 15px; }
+
+/* WhatsApp Butonu */
+.whatsapp-float {
+  position: fixed;
+  width: 55px;
+  height: 55px;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 26px;
+  line-height: 55px;
+  z-index: 1000;
+  text-decoration: none;
+}
+.whatsapp-float:hover { background-color: #128c7e; }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <div class="logo">STEEL Rent A Car</div>
+  <ul>
+    <li><a href="#cars">Araçlar</a></li>
+    <li><a href="#advantages">Avantajlar</a></li>
+    <li><a href="#reviews">Yorumlar</a></li>
+    <li><a href="#contact">İletişim</a></li>
+  </ul>
+  <a href="#reservation" class="btn">Hemen Rezervasyon</a>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="reservation">
+  <div class="hero-text">
+    <h1>Şanlıurfa'da Güvenilir Araç Kiralama</h1>
+    <p>Premium sınıf araçlar, şeffaf fiyatlandırma ve 7/24 müşteri desteği. STEEL Rent A Car ile yolculuğunuz baştan sona ayrıcalıklarla dolu.</p>
+    <a href="#cars" class="btn">Fiyatları Gör</a>
+    <a href="#cars" class="btn-outline">Filomuzu Keşfet</a>
+  </div>
+  <div class="form-card">
+    <form>
+      <div class="form-row">
+        <div>
+          <label>Alış Lokasyonu</label>
+          <select>
+            <option>Seçiniz</option>
+            <option>Şanlıurfa Merkez</option>
+            <option>Havalimanı</option>
+          </select>
+        </div>
+        <div>
+          <label>Araç Sınıfı</label>
+          <select>
+            <option>Ekonomi</option>
+            <option>Orta</option>
+            <option>Lüks</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Alış Tarihi</label>
+          <input type="date">
+        </div>
+        <div>
+          <label>İade Tarihi</label>
+          <input type="date">
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Alış Saati</label>
+          <input type="time" value="10:00">
+        </div>
+        <div>
+          <label>İade Saati</label>
+          <input type="time" value="10:00">
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Sürücü Yaşı</label>
+          <input type="number" value="30">
+        </div>
+      </div>
+      <button type="button" onclick="window.open('https://wa.me/905511544595','_blank')" class="btn prof full">Teklif Al</button>
+    </form>
+  </div>
+</section>
+
+<!-- Avantajlar -->
+<section class="advantages" id="advantages">
+  <h2>STEEL Rent A Car Avantajları</h2>
+  <div class="cards">
+    <div class="card"><h3>Esnek Rezervasyon</h3><p>Ücretsiz iptal ve değişiklik hakkı ile planlarınız daima güvende.</p></div>
+    <div class="card"><h3>Tam Sigorta</h3><p>Kapsamlı güvence paketleri ile endişesiz sürüş deneyimi.</p></div>
+    <div class="card"><h3>Yeni Model Filosu</h3><p>Yakıt tasarruflu, bakımlı ve donanımlı araç seçenekleri.</p></div>
+    <div class="card"><h3>7/24 Destek</h3><p>Yol yardım ve müşteri hizmetleri her an yanınızda.</p></div>
+  </div>
+</section>
+
+<!-- Araçlar -->
+<section class="cars" id="cars">
+  <h2>Popüler Araçlar</h2>
+  <div class="cards">
+    <div class="car-card">
+      <div class="car-badge">Ekonomi</div>
+      <img src="https://images.unsplash.com/photo-1623826631942-5d55cf980120?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Renault Clio">
+      <h3>Renault Clio veya benzeri</h3>
+      <p>Otomatik · Benzin · 5 Koltuk</p>
+      <div class="car-actions">
+        <a href="https://wa.me/905511544595" target="_blank" class="btn prof">Teklif Al</a>
+        <a href="#" class="btn-outline">Seç</a>
+      </div>
+    </div>
+
+    <div class="car-card">
+      <div class="car-badge">Orta</div>
+      <img src="https://images.unsplash.com/photo-1638618164682-12b986ec2a75?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Toyota Corolla">
+      <h3>Toyota Corolla veya benzeri</h3>
+      <p>Otomatik · Dizel · 5 Koltuk</p>
+      <div class="car-actions">
+        <a href="https://wa.me/905511544595" target="_blank" class="btn prof">Teklif Al</a>
+        <a href="#" class="btn-outline">Seç</a>
+      </div>
+    </div>
+
+    <div class="car-card">
+      <div class="car-badge">SUV</div>
+      <img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Nissan Qashqai">
+      <h3>Nissan Qashqai veya benzeri</h3>
+      <p>Otomatik · Benzin · Geniş Bagaj</p>
+      <div class="car-actions">
+        <span class="soon">Yakında!</span>
+        <a href="#" class="btn-outline">Seç</a>
+      </div>
+    </div>
+
+    <div class="car-card">
+      <div class="car-badge">Lüks</div>
+      <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" alt="BMW 4 Serisi">
+      <h3>BMW 4 Serisi veya benzeri</h3>
+      <p>Otomatik · Benzin · Premium</p>
+      <div class="car-actions">
+        <span class="soon">₺Yakında!</span>
+        <a href="#" class="btn-outline">Seç</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Yorumlar -->
+<section class="reviews" id="reviews">
+  <h2>Müşteri Yorumları</h2>
+  <div class="cards">
+    <div class="review-card">"Araç tertemizdi, teslimat çok hızlı gerçekleşti. Kesinlikle tavsiye ederim!"<span>- Mehmet K.</span></div>
+    <div class="review-card">"Fiyat/performans açısından çok başarılı. Tekrar kiralayacağım."<span>- Ayşe Y.</span></div>
+    <div class="review-card">"7/24 destek ekibi sayesinde çok rahat ettim. Harika hizmet!"<span>- Ali D.</span></div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="contact">
+  <p>Developed by esoftware</p>
+  <p>© 2025 STEEL Rent A Car. Tüm Hakları Saklıdır.</p>
+</footer>
+
+<!-- WhatsApp Sabit Buton -->
+<a href="https://wa.me/905511544595" target="_blank" class="whatsapp-float">💬</a>
+
+</body>
+</html>
