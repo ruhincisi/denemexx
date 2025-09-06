@@ -64,20 +64,15 @@ body {
 }
 .btn-outline:hover { background: #ffcc00; color: #000; }
 .btn.full { width: 100%; text-align: center; margin-top: 15px; }
-.btn.prof {
-  background: linear-gradient(45deg, #25d366, #128c7e);
-  color: #fff;
-}
-.btn.prof:hover { opacity: 0.9; }
 
-/* Mobil Menü Butonu */
-.menu-toggle {
-  display: none;
-  font-size: 26px;
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
+/* Altın sarısı özel buton */
+.btn.gold {
+  background: linear-gradient(to right, #ffcc00, #d4a017);
+  color: #000;
+  font-weight: bold;
+}
+.btn.gold:hover {
+  opacity: 0.85;
 }
 
 /* Hero */
@@ -219,23 +214,35 @@ footer p { margin: 0 0 15px; }
 @media (max-width: 768px) {
   .navbar {
     padding: 15px 20px;
+    flex-wrap: wrap;
   }
   .navbar ul {
     display: none;
     flex-direction: column;
     background: #111;
     position: absolute;
-    top: 60px;
+    top: 100%;   /* logonun ve butonun altında */
     left: 0;
     width: 100%;
     padding: 20px;
     gap: 15px;
+    border-top: 1px solid #222;
   }
   .navbar ul.active {
     display: flex;
   }
   .menu-toggle {
     display: block;
+    margin-left: auto;
+    cursor: pointer;
+    font-size: 24px;
+    color: #ffcc00;
+  }
+  .navbar .btn {
+    order: 2;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
   }
 }
 </style>
@@ -245,14 +252,14 @@ footer p { margin: 0 0 15px; }
 <!-- Navbar -->
 <div class="navbar">
   <div class="logo">STEEL Rent A Car</div>
-  <button class="menu-toggle">☰</button>
+  <div class="menu-toggle" onclick="document.querySelector('.navbar ul').classList.toggle('active')">☰</div>
   <ul>
     <li><a href="#cars">Araçlar</a></li>
     <li><a href="#advantages">Avantajlar</a></li>
     <li><a href="#reviews">Yorumlar</a></li>
     <li><a href="#contact">İletişim</a></li>
   </ul>
-  <a href="#reservation" class="btn">Hemen Rezervasyon</a>
+  <a href="#reservation" class="btn gold">Hemen Rezervasyon</a>
 </div>
 
 <!-- Hero -->
@@ -309,7 +316,7 @@ footer p { margin: 0 0 15px; }
           <input type="number" value="30">
         </div>
       </div>
-      <button type="button" onclick="window.open('https://wa.me/905511544595','_blank')" class="btn prof full">Teklif Al</button>
+      <button type="button" onclick="window.open('https://wa.me/905511544595','_blank')" class="btn gold full">Teklif Al</button>
     </form>
   </div>
 </section>
@@ -335,7 +342,7 @@ footer p { margin: 0 0 15px; }
       <h3>Renault Clio veya benzeri</h3>
       <p>Otomatik · Benzin · 5 Koltuk</p>
       <div class="car-actions">
-        <a href="https://wa.me/905511544595" target="_blank" class="btn prof">Teklif Al</a>
+        <a href="https://wa.me/905511544595" target="_blank" class="btn gold">Teklif Al</a>
         <a href="#" class="btn-outline">Seç</a>
       </div>
     </div>
@@ -346,7 +353,7 @@ footer p { margin: 0 0 15px; }
       <h3>Toyota Corolla veya benzeri</h3>
       <p>Otomatik · Dizel · 5 Koltuk</p>
       <div class="car-actions">
-        <a href="https://wa.me/905511544595" target="_blank" class="btn prof">Teklif Al</a>
+        <a href="https://wa.me/905511544595" target="_blank" class="btn gold">Teklif Al</a>
         <a href="#" class="btn-outline">Seç</a>
       </div>
     </div>
@@ -394,14 +401,5 @@ footer p { margin: 0 0 15px; }
 <!-- WhatsApp Sabit Buton -->
 <a href="https://wa.me/905511544595" target="_blank" class="whatsapp-float">💬</a>
 
-<script>
-/* Mobil menü aç/kapat */
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.navbar ul');
-
-menuToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
-});
-</script>
 </body>
 </html>
