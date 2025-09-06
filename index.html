@@ -70,6 +70,16 @@ body {
 }
 .btn.prof:hover { opacity: 0.9; }
 
+/* Mobil Menü Butonu */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
 /* Hero */
 .hero {
   display: flex;
@@ -204,6 +214,30 @@ footer p { margin: 0 0 15px; }
   text-decoration: none;
 }
 .whatsapp-float:hover { background-color: #128c7e; }
+
+/* 📱 Mobil düzen */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+  .navbar ul {
+    display: none;
+    flex-direction: column;
+    background: #111;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    gap: 15px;
+  }
+  .navbar ul.active {
+    display: flex;
+  }
+  .menu-toggle {
+    display: block;
+  }
+}
 </style>
 </head>
 <body>
@@ -211,6 +245,7 @@ footer p { margin: 0 0 15px; }
 <!-- Navbar -->
 <div class="navbar">
   <div class="logo">STEEL Rent A Car</div>
+  <button class="menu-toggle">☰</button>
   <ul>
     <li><a href="#cars">Araçlar</a></li>
     <li><a href="#advantages">Avantajlar</a></li>
@@ -359,5 +394,14 @@ footer p { margin: 0 0 15px; }
 <!-- WhatsApp Sabit Buton -->
 <a href="https://wa.me/905511544595" target="_blank" class="whatsapp-float">💬</a>
 
+<script>
+/* Mobil menü aç/kapat */
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.navbar ul');
+
+menuToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+});
+</script>
 </body>
 </html>
